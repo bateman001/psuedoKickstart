@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Header } from "semantic-ui-react";
+
 import factory from "../ethereum/factory";
 
 //Campaign list page
@@ -15,7 +17,7 @@ const CampaignIndex = ({ campaigns }) => {
     const showOpenCampaigns = () => {
         return (
             <div>
-                <h2>Open Campaign</h2>
+                <Header as="h2">Open Campaign</Header>
                 {allCamps.map((camp, i) => {
                     return (
                         <li key={i}>
