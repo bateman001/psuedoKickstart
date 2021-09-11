@@ -1,38 +1,34 @@
-import React, { useEffect, useState } from "react";
-import { Header } from "semantic-ui-react";
+import React from "react";
+import { Header, Card, Button } from "semantic-ui-react";
 
 import factory from "../ethereum/factory";
+import Layout from "../components/Layout";
 
 //Campaign list page
 const CampaignIndex = ({ campaigns }) => {
-    const [allCamps, setCampaigns] = useState(campaigns);
-
-    console.log(campaigns);
-    console.log(allCamps);
-
     const createCrowdCoin = () => {
-        return <div>hey</div>;
+        return <Header as="h2">View All Campaigns</Header>;
     };
 
     const showOpenCampaigns = () => {
-        return (
-            <div>
-                <Header as="h2">Open Campaign</Header>
-                {allCamps.map((camp, i) => {
-                    return (
-                        <li key={i}>
-                            Address of Campaign {i + 1}: {camp}
-                        </li>
-                    );
-                })}
-            </div>
-        );
+        const items = campaigns.map(address => {
+            return {
+                header: address,
+                description: <a>View Campaign</a>,
+                fluid: true
+            };
+        });
+        return <Card.Group items={items} />;
     };
 
     return (
         <div>
-            {createCrowdCoin()}
-            {showOpenCampaigns()}
+            <Layout>
+                {createCrowdCoin()}
+                <h3>Open Campaigns</h3>
+                <Button floated="right" content="Create Campaign" icon="add circle" primary />
+                {showOpenCampaigns()}
+            </Layout>
         </div>
     );
 };
